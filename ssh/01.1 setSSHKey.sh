@@ -9,9 +9,9 @@ fi
 
 # Variables globales (define estos valores al inicio del script)
 SERVIDOR="192.168.1.59"      # IP del servidor
-USUARIO="andres"              # Usuario del servidor
-CONTRASENA="asde71.4andres"     # Contraseña actual del servidor
-CARPETA_BACKUP="/home/andres/Desarrollo/Bash/AutenticacionSegura/ssh_config_backup"  # Carpeta donde se guardarán las claves SSH
+USUARIO=""              # Usuario del servidor
+CONTRASENA=""     # Contraseña actual del servidor
+CARPETA_BACKUP="/home/$USER/Desarrollo/Bash/AutenticacionSegura/ssh_config_backup"  # Carpeta donde se guardarán las claves SSH
 
 # Ruta del archivo de clave SSH (en la carpeta de respaldo)
 CLAVE_PRIVADA="$CARPETA_BACKUP/id_rsa"

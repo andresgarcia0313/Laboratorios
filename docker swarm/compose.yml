@@ -1,0 +1,17 @@
+services: # Definición de servicios
+  serviceweb: # Nombre del servicio
+    image: nginx:latest # Imagen de Nginx
+    deploy: # Configuración de despliegue
+      replicas: 3  # Número de réplicas
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "30006:80"  # Mapea el puerto 80 del contenedor al puerto 30006 del host
+    networks:
+      - nginx-network # Nombre de la red
+
+networks: # Definición de redes
+  nginx-network:  # Nombre de la red
+    driver: overlay  # Usamos un driver overlay para redes de múltiples nodos
+
+
