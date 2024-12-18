@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-daemonset
+spec:
+  selector:
+    matchLabels:
+      name: nginx
+  template:
+    metadata:
+      labels:
+        name: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+
+# Muestra todos los pods y en que nodo se encuentran o se esta ejecutando
+# kubectl get pods -o wide
+
+
+# Ejercicio fácil:
+# Objetivo: Crear un DaemonSet simple para ejecutar un contenedor de nginx en un clúster de Kubernetes.
+#     1. Crear un archivo YAML con un DaemonSet que ejecute nginx en todos los nodos del clúster.
+#     2. Verificar que el Pod de Nginx se esté ejecutando en todos los nodos.
+
+# Ejercicio intermedio:
+# Objetivo: Modificar el DaemonSet para que el contenedor de nginx ejecute un archivo HTML personalizado.
+#     1. Modificar el archivo nginx-ds.yaml para que el contenedor de nginx sirva una página HTML con contenido específico.
+#     2. Aplicar el DaemonSet y verificar que el contenido se sirva correctamente en todos los nodos.
+# Ejercicio avanzado:
+# Objetivo: Implementar un DaemonSet que ejecute un contenedor con un agente de monitoreo en cada nodo del clúster.
+#     1. Crear un DaemonSet que ejecute un agente de monitoreo, como Prometheus Node Exporter, en todos los nodos.
+#     2. Verificar que el agente esté corriendo en cada nodo y que recoja las métricas de los nodos correctamente.
+#     3. Asegurarse de que las métricas sean accesibles y estén configuradas correctamente para su visualización.

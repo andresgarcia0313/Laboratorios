@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rook-ceph-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: rook-ceph-block
+
+
+
+#   Ejercicio fácil:
+# Crea un PVC que solicite un volumen de 1Gi utilizando la StorageClass predeterminada de Rook. Luego, monta este volumen en un pod para almacenar datos temporales. Verifica que el volumen se cree correctamente.
+# Ejercicio intermedio:
+# Crea un clúster de Ceph utilizando Rook y configura al menos tres nodos para proporcionar almacenamiento distribuido. A continuación, crea un PVC que utilice este almacenamiento distribuido y monta este volumen en un pod para probar su fiabilidad.
+# Ejercicio avanzado:
+# Implementa Rook con Ceph en un entorno multi-clúster, configurando diferentes StorageClasses para distintas necesidades de almacenamiento (bloques, objetos). Crea un pod en cada clúster que utilice diferentes tipos de almacenamiento y supervisa el rendimiento y la disponibilidad de los volúmenes en el entorno distribuido.

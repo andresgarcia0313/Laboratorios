@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: my-app  # Selecciona Pods con la etiqueta "app: my-app"
+  ports:
+    - protocol: TCP
+      port: 80         # Puerto del servicio
+      targetPort: 9376 # Puerto del Pod al que redirige el tráfico
+  type: ClusterIP      # Tipo de Service

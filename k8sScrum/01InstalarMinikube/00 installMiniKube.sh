@@ -87,11 +87,11 @@ kubectl logs <nombre-del-pod> -n kube-system
 
 # Iniciar Minikube con recursos amplios
 echo "Iniciando Minikube con configuración avanzada..."
-
-minikube start --cpus=4 --memory=4096 --addons=metrics-server --addons=dashboard --addons=storage-provisioner --addons=coredns --addons=ingress
+minikube delete && minikube start --cpus=2 --memory=4096 --addons=metrics-server --addons=dashboard --addons=storage-provisioner --addons=coredns --addons=ingress #--host-only-cidr="10.1.116.0/24"
 
 # Mirar los complementos instalados y sus estados
 minikube addons list
+minikube addons enable metallb
 
 # Esperar a que el clúster esté listo
 echo "Esperando a que Minikube esté completamente inicializado..."
@@ -103,7 +103,7 @@ kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 # Instalar Prometheus y Grafana para monitoreo
 echo "Instalando Prometheus y Grafana..."
-echo "Activando Helm..."
+echo "Activando Helm... visita https://helm.sh/docs/"
 if ! command -v helm &> /dev/null
 then
     echo "Helm no está instalado. Instalando Helm..."

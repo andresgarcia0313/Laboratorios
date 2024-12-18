@@ -1,0 +1,52 @@
+# Definición del Persistent Volume (PV)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-demo
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /mnt/data
+
+# Definición del Persistent Volume Claim (PVC)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-demo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+# Definición de un Pod que usa el PVC
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-pv
+spec:
+  containers:
+    - name: busybox
+      image: busybox
+      volumeMounts:
+        - mountPath: /data
+          name: storage
+  volumes:
+    - name: storage
+      persistentVolumeClaim:
+        claimName: pvc-demo
+
+# Ejercicio fácil:
+# Objetivo: Crear un Persistent Volume y un Persistent Volume Claim.
+# Instrucciones: Configura un volumen persistente de 1Gi y reclama este volumen desde un Pod.
+# Ejercicio intermedio:
+# Objetivo: Crear un almacenamiento persistente en un Pod utilizando una política de retención diferente.
+# Instrucciones: Crea un Persistent Volume con una política de retención "Delete" y un Persistent Volume Claim que lo utilice. Verifica el comportamiento al eliminar el Pod.
+# Ejercicio avanzado:
+# Objetivo: Implementar Rook en un clúster de Kubernetes para ofrecer almacenamiento distribuido.
+# Instrucciones: Instala Rook en tu clúster, crea un pool de almacenamiento y provisiona un Persistent Volume utilizando este pool.

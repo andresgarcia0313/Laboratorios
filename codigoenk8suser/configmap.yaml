@@ -1,0 +1,12 @@
+# kubectl create configmap app-config --from-literal=db_host=localhost --from-literal=db_port=3306
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+spec:
+  containers:
+  - name: app-container
+    image: myapp:latest
+    envFrom:
+    - configMapRef:
+        name: app-config

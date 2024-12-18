@@ -1,0 +1,55 @@
+apiVersion: apps/v1 # Esta es la versión de la API de Kubernetes que vamos a usar
+kind: Deployment # Vamos a crear un despliegue
+metadata: # Metadatos del despliegue
+  name: nginx-deployment # Nombre del despliegue
+  annotations:
+    app: myapp
+    environment: production
+    version: "v1.2.3"
+    description: "Este Pod ejecuta la aplicación de prueba."
+spec: # Especificaciones del despliegue
+  replicas: 5 # Número de réplicas que vamos a crear
+  selector: # Selector de los pods que vamos a crear
+    matchLabels: # Etiquetas de los pods
+      app: nginx # Etiqueta app con valor nginx
+  template: # Plantilla de los pods que vamos a crear
+    metadata: # Metadatos de los pods
+      labels: # Etiquetas de los pods
+        app: nginx # Etiqueta app con valor nginx para usarse como selector en mi servicio 
+    spec: # Especificaciones de los pods
+      containers: # Contenedores de los pods
+        - name: nginx # Nombre del contenedor
+          image: nginx:latest # Imagen del contenedor
+          ports: # Puertos del contenedor
+            - containerPort: 80 # Puerto 80 del contenedor
+
+
+# kubectl apply -f nginx-deployment.yaml
+# kubectl apply -f nginx-service.yaml
+# kubectl apply -f network-policy.yaml
+
+
+# kubectl delete -f nginx-deployment.yaml
+# kubectl delete -f nginx-service.yaml
+# kubectl delete -f network-policy.yaml
+
+
+# kubectl delete pods -l app=nginx
+# kubectl get pods -l deployment=nginx-deployment
+
+
+# kubectl get deployments
+
+# kubectl get pods
+
+# Ver los servicios expuestos
+# kubectl get svc 
+# Ver los servicios expuestos con más información por nombre
+# kubectl get svc nginx-service
+# kubectl get endpoints
+
+# ver logs de un pod
+# kubectl logs nginx-deployment-54b9c68f67-6v7w4
+
+# minikube service nginx-service
+# kubectl port-forward svc/nginx-service 30006:80 &
