@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080  # El puerto externo (en un rango 30000-32767)
+  type: NodePort
+
+
+
+# minikube service nginx-service (visualizarlo en el navegador web cuando lo ejecutes en un equipo con interfaz gráfica)
+# para verlo en curl puedes usar minikube ip y con este lo pones dentro curl asì:
+# curl http://<ip> :30080
+
