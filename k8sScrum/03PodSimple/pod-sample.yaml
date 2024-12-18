@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-pod
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+# kubectl apply -f pod-example.yaml
+# kubectl get pods

@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1 # Versión de la API de Kubernetes
+kind: NetworkPolicy # Creación de una política de red
+metadata: # Metadatos de la política de red
+  name: block-nginx-access # Nombre de la política de red
+  namespace: default # Espacio de nombres de la política de red
+spec: # Especificaciones de la política de red
+  podSelector: # Selector de los pods a los que vamos a aplicar la política
+    matchLabels: # Etiquetas de los pods
+      app: nginx # Etiqueta app con valor nginx
+  policyTypes: # Tipos de políticas (tanto Ingress como Egress están definidos)
+    - Ingress # Bloquear tráfico entrante
+    - Egress # Bloquear tráfico saliente
+  ingress:  # Reglas de tráfico entrante
+    - from: [] # No permitimos tráfico entrante desde ningún origen (vacío bloquea todo)
+  egress: # Reglas de tráfico saliente
+    - to: [] # No permitimos tráfico saliente hacia ningún destino (vacío bloquea todo)

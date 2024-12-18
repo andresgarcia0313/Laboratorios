@@ -14,6 +14,8 @@ kubectl apply -f nginx-deployment.yaml
 kubectl apply -f nginx-service.yaml
 kubectl apply -f network-policy.yaml
 
+#"k8suser"
+
 # 2. Eliminar los recursos aplicados
 # Si deseas eliminar los recursos aplicados previamente (Deployment, Servicio, y Política de Red),
 # puedes usar los siguientes comandos:
@@ -58,7 +60,9 @@ kubectl apply -f network-policy.yaml
 # 11. Abrir el servicio con Minikube
 # Si estás utilizando Minikube y deseas acceder a tu servicio de nginx desde el navegador,
 # usa este comando:
-# minikube service nginx-service
+minikube service nginx-service
+
+# Conectas a ssh de k8suser y lo ejecutas desde la mv de windows
 
 # 12. Realizar port-forwarding del servicio
 # Si deseas hacer un port-forwarding del servicio para acceder a él en un puerto local,
