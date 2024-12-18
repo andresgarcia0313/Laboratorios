@@ -15,4 +15,4 @@ spec:
 # kubectl get svc
 # kubectl get pods
 # kubectl exec -it <nombre-del-pod> -- /bin/bash
-curl http://nginx-service:80
+# curl http://nginx-service:80
